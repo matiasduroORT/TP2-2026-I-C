@@ -127,9 +127,48 @@ let unido = dadoVuelta.join("")
 
 let palabra = "HolA"
 
-console.log(palabra.toUpperCase());
+// console.log(palabra.toUpperCase());
 
-console.log(palabra.toLowerCase());
+// console.log(palabra.toLowerCase());
+
+
+// metodo Reduce:
+// utiliza un acumulador, el cual cada vez que itera, puede ir acumulando
+
+let numbers = [10, 22, 33, 14, 54, 16, 7]
+
+numbers.reduce((accumulador, num) => {
+
+    // console.log("num: ", num);
+    
+    // console.log("acumulador: ", accumulador);
+    //     console.log("Resultado: ", accumulador + num);
+
+
+    return accumulador + num
+}, 0)
+
+
+const alumnos = [
+    {
+        nombreMateria: "TP2",
+        cantidad: 10,
+    },
+    {
+        nombreMateria: "PNT2",
+        cantidad: 8
+    }
+]
+
+
+let cantidadAlumnos = alumnos.reduce((acc, alumno) => {
+    console.log("acc: ", acc);
+    
+    return acc + alumno.cantidad
+}, 5)
+
+console.log(cantidadAlumnos);
+
 
 
 
