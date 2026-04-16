@@ -32,7 +32,7 @@ function operacionMatematica(num1, num2, callback) {
 // peticion sale mal
 
 // Patron Error-First 
-// el callbnack siempre recibe dos parametros (error, resultado)
+// el callback siempre recibe dos parametros (error, resultado)
 // si algo salio mal => callback(error, null)
 // si todo salio bien => callback(null, resultado)
 
@@ -142,6 +142,11 @@ function registrarPedido(clienteId, descuento, callback) {
     }, 800);
 }
 
+
+
+
+// Callback Hell
+// cada funcion abre una llave, que no se cierra hasta el final
 
 function procesarPedido(clienteId) {
 
