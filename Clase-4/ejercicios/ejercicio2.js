@@ -40,11 +40,45 @@ function obtenerUsuario(id, usuariosDB) {
 
 
 function mostrarUsuarios(ids, usuariosDB) {
+
  
-//.then
+    let respuesta = ids.map(id => {
+
+        obtenerUsuario(id, usuariosDB)
+            .then(usuario => {
+                // console.log("usuario: ", usuario);
+                
+                return {usuario}
+                
+            })
+            .catch(error => {
+                console.log("error: ", error);
+                return {error}
+            })
+        
+    });
+
+    console.log(respuesta);
+    
+    
     
 }
 
+// async function mostrarUsuarios(ids, usuariosDB) {
+//     let respuesta = []
+//     for (const id of ids) {
+//         try {
+//             const usuario = await obtenerUsuario(id, usuariosDB)
+//             respuesta.push(usuario)
+//         } catch (error) {
+//             console.log("err: ", error);
+
+//         }
+//     }
+
+//     return respuesta
+
+// }
 
 
 mostrarUsuarios(listaDeAlumnos, usuariosDB)

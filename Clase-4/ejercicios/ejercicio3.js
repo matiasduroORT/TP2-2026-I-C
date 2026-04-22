@@ -7,9 +7,22 @@
 // retorne el nombre solo del pokemon
 
 
-function llamarPokemon(id){
+async function llamarPokemon(id){
 
-    fetch("https://pokeapi.co/api/v2/pokemon/" ) // sumarle el id
+
+    try {
+        
+    const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
+    const data = await response.json()
+
+    console.log(data.name);
+
+    } catch (error) {
+        console.log("error: ", error);
+        
+    }
 }
 
+
+llamarPokemon(6)
 
