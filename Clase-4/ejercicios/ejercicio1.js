@@ -40,6 +40,7 @@ function obtenerUsuario(id, usuariosDB) {
 
 
 async function mostrarUsuarios(ids, usuariosDB) {
+    
     let respuesta = []
     for (const id of ids) {
         try {
