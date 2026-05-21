@@ -27,7 +27,7 @@ export const getUsersSearch = async (req, res) => {
             nombre:{
                 $regex: `^${nombre}`,
                 $options: "i"
-            }
+            },
         })
 
         res.json(user)

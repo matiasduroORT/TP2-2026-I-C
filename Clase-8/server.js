@@ -2,6 +2,8 @@ import express from 'express'
 import dotenv from 'dotenv'
 import conectarDB from './src/config/db.js'
 import usersRoutes from './src/routes/userRoutes.js'
+import productRoutes from './src/routes/productRoutes.js'
+
 dotenv.config()
 
 const PORT = process.env.PORT 
@@ -14,6 +16,8 @@ const app = express()
 app.use( express.json() )
 
 app.use("/api/users", usersRoutes)
+app.use("/api/products", productRoutes)
+
 
 // 1- crear un app use para las rutas /api/products
 // 2- crear modelo, controlador y rutas para productos
