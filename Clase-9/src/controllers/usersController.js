@@ -1,5 +1,5 @@
 import User from "../models/User.js"
-
+import bcrypt from "bcryptjs"
 
 
 export const getUsers = async (req, res) => {
@@ -50,10 +50,14 @@ export const createUser = async (req, res) => {
     }
 
 
+    const hashedPassword = await bcrypt.hash(password, 10)
+
+
+
     const nuevoUser = {
         nombre: nombre,
         email: email, 
-        password: password
+        password: hashedPassword
     }
 
     try {
@@ -67,5 +71,5 @@ export const createUser = async (req, res) => {
     }
     
     // 201 created -> es el codigo de exito cuando se crea un registro en la api
-    res.status(201).json(nuevoAlumno)
+    // res.status(201).json(newUser)
 }

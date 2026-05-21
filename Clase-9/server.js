@@ -3,6 +3,7 @@ import dotenv from 'dotenv'
 import conectarDB from './src/config/db.js'
 import usersRoutes from './src/routes/userRoutes.js'
 import productRoutes from './src/routes/productRoutes.js'
+import authRoutes from './src/routes/authRoutes.js'
 
 dotenv.config()
 
@@ -17,6 +18,7 @@ app.use( express.json() )
 
 app.use("/api/users", usersRoutes)
 app.use("/api/products", productRoutes)
+app.use("/api/auth", authRoutes)
 
 
 // 1- crear un app use para las rutas /api/products
