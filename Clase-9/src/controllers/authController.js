@@ -4,16 +4,25 @@ import jwt from "jsonwebtoken"
 
 const generarAccessToken = (user) => {
 
-    const datosEncriptados = {id: user.id, email: user.email}
+    const datosEncriptados = {id: user.id, email: user.email, admin: user.admin}
 
+    const JWT_KEY = process.env.JWT_SECRET
 
     return jwt.sign(
         datosEncriptados, 
-        "pepe",
+        JWT_KEY,
         { expiresIn: "1h"}
     )
 
+}
 
+const generarRefreshToken = (user) => {
+
+    return jwt.sign(
+        {id: user.id},
+       "45194129",
+       { expiresIn: "7d"}
+    )
 }
 
 export const login = async (req, res) => {
@@ -53,8 +62,14 @@ export const login = async (req, res) => {
 
 
         const accessToken = generarAccessToken(user)
+        const refreshToken = generarRefreshToken(user)
 
 
+
+        res.cookie("refreshToken", refreshToken, {
+            httpOnly: true,
+            maxAge: 1000 * 60 * 60 * 24 * 7 // 7 dias en ms: 1000ms * 60s * 60m * 24hs * 7dias 
+        })
 
         res.json({accessToken})
         
@@ -63,6 +78,34 @@ export const login = async (req, res) => {
         
         res.json({error: "ocurrio un error"})
     }
+
+
+}
+
+export const refreshToken = (req, res) => {
+
+    const token = req.cookies.refreshToken
+
+    if(!token){
+        return res.status(401).json({ error: "No hay refresh token"})
+    }
+
+    try {
+
+        const decodificado = jwt.verify(token, process.env.JWT_REFRESH_SECRET)
+
+        const newAccessToken = jwt.sign(
+            {id: decodificado.id},
+            process.env.JWT_SECRET,
+            {expiresIn: '1h'}
+    )
+
+    res.json({accessToken: newAccessToken})
+        
+    } catch (error) {
+        
+    }
+
 
 
 }

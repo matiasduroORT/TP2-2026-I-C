@@ -1,5 +1,6 @@
 import express from "express"
 import { createProducts, getProducts, getProductsSearch } from "../controllers/productsController.js"
+import { protegerRuta, protegerRutaAdmin } from "../middlewares/authMiddlewares.js"
 
 const router = express.Router()
 
@@ -13,6 +14,6 @@ router.get("/search", getProductsSearch)
 
 // LA REQUEST LLEGA -> EL MIDDLEWARE ANALIZA -> PASA O NO AL CONTROLADOR
 
-router.post("/", createProducts)
+router.post("/", protegerRutaAdmin, createProducts)
 
 export default router

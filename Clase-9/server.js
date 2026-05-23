@@ -4,6 +4,7 @@ import conectarDB from './src/config/db.js'
 import usersRoutes from './src/routes/userRoutes.js'
 import productRoutes from './src/routes/productRoutes.js'
 import authRoutes from './src/routes/authRoutes.js'
+import cookieParser from 'cookie-parser';
 
 dotenv.config()
 
@@ -15,6 +16,7 @@ conectarDB()
 const app = express()
 
 app.use( express.json() )
+app.use(cookieParser())
 
 app.use("/api/users", usersRoutes)
 app.use("/api/products", productRoutes)

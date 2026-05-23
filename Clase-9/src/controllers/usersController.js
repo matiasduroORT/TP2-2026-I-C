@@ -41,6 +41,9 @@ export const getUsersSearch = async (req, res) => {
 
 export const createUser = async (req, res) => {
      // req.body contiene los datos enviados por el cliente, en formato JSON
+
+     console.log("LLego a aca");
+     
     const { nombre, email, password} = req.body
 
     if(!nombre || !email || !password){
@@ -57,7 +60,8 @@ export const createUser = async (req, res) => {
     const nuevoUser = {
         nombre: nombre,
         email: email, 
-        password: hashedPassword
+        password: hashedPassword,
+        admin: false
     }
 
     try {
