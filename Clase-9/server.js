@@ -18,6 +18,7 @@ const app = express()
 app.use( express.json() )
 app.use(cookieParser())
 
+
 app.use("/api/users", usersRoutes)
 app.use("/api/products", productRoutes)
 app.use("/api/auth", authRoutes)

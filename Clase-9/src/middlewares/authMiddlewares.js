@@ -18,6 +18,7 @@ export const protegerRuta = (req, res, next) => {
         const decodificado = jwt.verify(token, process.env.JWT_SECRET)
         
     console.log("decodificado: ", decodificado);
+    req.usuario = decodificado
 
     next()
         
@@ -53,6 +54,8 @@ export const protegerRutaAdmin = (req, res, next) => {
     if(!decodificado.admin){
         return res.status(401).json({error: "Necesitas ser admin para realizar esta accion"})
     }
+
+    req.usuario = decodificado
 
     next()
         
